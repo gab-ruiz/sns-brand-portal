@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SNS Brand Portal</title>
+<meta name="description" content="SNS brand guidelines and asset library.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=Montserrat:wght@300;600;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: fixed brand index on the left, one continuous editorial scroll on the right; brand colour leads, chrome stays neutral. */
+:root{
+  --bg:#FFFFFF; --panel:#F5F5F9; --fg:#0C0C14; --mu:#5E6074; --ln:#E2E3EC; --chip:#EEEFF6;
+  --tile:#FFFFFF; --link:#393EB3; --brand:#393EB3; --brand-deep:#1C2C6A; --on-brand:#FFFFFF; --shade:rgba(10,11,30,.72);
+  --f-sans:'Söhne','Inter Tight',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --f-montserrat:'Montserrat','Inter Tight',sans-serif;
+  --side:288px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A0B14; --panel:#11131F; --fg:#EEEFF6; --mu:#9FA1B8; --ln:#23253A; --chip:#1A1C2C;
+  --tile:#FFFFFF; --link:#A9ABEA; --shade:rgba(0,0,0,.8); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0A0B14; --panel:#11131F; --fg:#EEEFF6; --mu:#9FA1B8; --ln:#23253A; --chip:#1A1C2C;
+  --tile:#FFFFFF; --link:#A9ABEA; --shade:rgba(0,0,0,.8); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:6px}
+.mono{font-family:var(--f-mono)}
+.lbl{font:500 11px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:0}
+.muted{color:var(--mu)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* shell */
+.app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:100vh}
+.side{position:sticky;top:env(safe-area-inset-top,0px);height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow-y:auto;background:var(--panel);border-right:1px solid var(--ln);
+  padding-block:28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:16px;display:flex;flex-direction:column;gap:28px}
+.brandmark{display:flex;flex-direction:column;gap:12px;padding:4px 12px 0}
+.brandmark img{width:180px;height:auto;background:var(--tile);border-radius:6px;padding:6px 8px;margin-left:-8px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav a{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:10px;text-decoration:none;color:var(--fg);font-size:15px;transition:background .15s}
+.nav a:hover{background:var(--chip)}
+.nav a.on{background:var(--chip);font-weight:700}
+.nav a.on .n{color:var(--link)}
+.nav a.empty{opacity:.4;pointer-events:none}
+.nav .n{width:22px;font-weight:300;font-size:13px;color:var(--mu)}
+.nav .c{margin-left:auto;font:500 11px var(--f-mono);color:var(--mu)}
+.tray{border:1px solid var(--ln);border-radius:16px;background:var(--bg);padding:16px;display:flex;flex-direction:column;gap:12px}
+.tray-head{display:flex;justify-content:space-between;align-items:center}
+.count{min-width:28px;height:24px;padding:0 8px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:600 12px var(--f-mono);background:var(--brand);color:var(--on-brand)}
+.tray ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tray li{display:flex;align-items:center;gap:8px;min-height:44px;border-bottom:1px solid var(--ln)}
+.tray li div{flex:1;min-width:0}
+.tray li p{margin:0;font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x{width:36px;height:36px;border:0;background:none;border-radius:8px;color:var(--mu);font-size:18px;cursor:pointer}
+.x:hover{background:var(--chip);color:var(--fg)}
+.side-foot{margin-top:auto;padding:0 12px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:0;background:var(--brand);color:var(--on-brand);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;transition:filter .15s}
+.btn:hover{filter:brightness(1.12)}
+.btn.inv{background:var(--on-brand);color:var(--brand)}
+.btn.line{background:transparent;border:1px solid currentColor;color:var(--on-brand)}
+.ghost{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ln);background:var(--bg);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.ghost:hover{border-color:var(--mu)}
+.add{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;min-width:80px;padding:0 12px;border-radius:999px;border:1px solid var(--ln);background:var(--bg);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.add:hover{border-color:var(--fg)}
+.add[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ln);background:var(--bg);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--ln)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap-in{padding-inline:clamp(0px,3vw,32px)}
+.top .wrap-in{padding-block:14px;display:flex;flex-direction:column;gap:12px}
+.searchrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.search{position:relative;flex:1 1 280px;display:flex}
+.search svg{position:absolute;left:18px;top:15px;color:var(--mu);pointer-events:none}
+.search input{width:100%;min-height:48px;border:1px solid var(--ln);border-radius:999px;padding:0 18px 0 46px;font:15px var(--f-sans);color:var(--fg);background:var(--panel)}
+.search input:focus{outline:none;border-color:var(--link)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+
+/* hero */
+.hero{background:var(--brand);color:var(--on-brand);overflow:hidden}
+.hero .wrap-in{padding-top:56px;display:flex;flex-direction:column;gap:36px}
+.hero-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.hero h1{margin:0;font-weight:300;font-size:clamp(60px,10vw,140px);line-height:.92;letter-spacing:-.04em}
+.hero .tag{margin:0;font-size:22px;font-weight:300;line-height:1.25}
+.hero .lede{margin:0;max-width:40ch;font-size:clamp(18px,2vw,22px);font-weight:300;line-height:1.45}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero-actions .ver{font-size:14px;font-weight:300;opacity:.85;margin-left:6px}
+.hero-mark{width:min(580px,82%);margin-left:-14px}
+
+/* sections */
+.results{padding-top:36px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.results p{margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em}
+.sec{padding-block:88px;border-top:1px solid var(--ln);display:flex;flex-direction:column;gap:32px;scroll-margin-top:140px}
+.sec:first-child{border-top:0}
+.sec-head{display:flex;flex-wrap:wrap;gap:16px 56px;justify-content:space-between;align-items:flex-end}
+.sec-num{margin:0 0 14px;font-size:15px;font-weight:300;letter-spacing:.04em;color:var(--mu)}
+.sec h2{margin:0;font-size:clamp(38px,5vw,56px);font-weight:800;letter-spacing:-.035em;line-height:1;text-wrap:balance}
+.intro{margin:0;max-width:56ch;font-size:17px;color:var(--mu)}
+h3.sub{margin:0;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.sub-head{display:flex;flex-wrap:wrap;gap:8px 40px;justify-content:space-between;align-items:baseline}
+.sub-head p{margin:0;max-width:56ch;color:var(--mu)}
+.grid{display:grid;gap:24px 16px}
+.g-logo{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.g-apps{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.wide{grid-column:span 2}
+.tile{border-radius:14px;border:1px solid var(--ln);background:var(--tile);display:flex;align-items:center;justify-content:center;overflow:hidden;height:220px}
+.tile img{max-height:62%;object-fit:contain}
+.wide .tile{height:340px}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;padding-top:12px;flex-wrap:wrap}
+.meta .name{margin:0;font-size:15px;font-weight:600}
+.meta .acts{display:flex;gap:6px}
+.figure{border-radius:14px;border:1px solid var(--ln);background:var(--tile);padding:clamp(16px,3vw,32px)}
+.figure img{width:100%;height:auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.stat{border:1px solid var(--ln);border-radius:14px;padding:20px}
+.stat p:last-child{margin:6px 0 0;font-size:40px;font-weight:300;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stack{display:flex;flex-direction:column;gap:14px}
+.rules{display:flex;flex-direction:column;gap:48px;padding-top:24px}
+
+/* colour */
+.g-main{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.g-sec{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.sw{border-radius:16px;overflow:hidden;border:1px solid var(--ln);background:var(--bg)}
+.sw-face{height:260px;padding:20px;display:flex;align-items:flex-end;font-size:26px;font-weight:400;letter-spacing:-.01em}
+.g-sec .sw-face{height:120px;font-size:15px;font-weight:500;padding:14px}
+.codes{padding:6px 16px 10px}
+.g-sec .codes{padding:4px 12px 8px}
+.code{display:flex;align-items:center;gap:8px;min-height:40px;border-bottom:1px solid var(--ln)}
+.code:last-child{border-bottom:0}
+.code .k{width:64px;flex:0 0 auto}
+.g-sec .code .k{width:44px}
+.code .v{flex:1;font:500 12px var(--f-mono);font-variant-numeric:tabular-nums}
+.code .v.pending{color:var(--mu)}
+.copy{min-height:32px;min-width:58px;padding:0 10px;border-radius:8px;border:0;background:none;font-size:12px;font-weight:500;cursor:pointer;color:var(--mu)}
+.copy:hover{background:var(--chip);color:var(--fg)}
+.copy.done{color:var(--link);font-weight:700}
+
+/* type */
+.font{border:1px solid var(--ln);border-radius:16px;overflow:hidden}
+.font-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:18px 24px;background:var(--panel);border-bottom:1px solid var(--ln)}
+.font-head h3{margin:4px 0 0;font-size:24px;font-weight:700;letter-spacing:-.01em}
+.font-head .acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.weights{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.weight{padding:24px;border-right:1px solid var(--ln);display:flex;flex-direction:column;gap:18px;min-width:0}
+.weight:last-child{border-right:0}
+.weight .abc{margin:0;font-size:15px;letter-spacing:.06em;line-height:1.6;overflow-wrap:anywhere}
+.weight .glyph{margin:0;font-size:clamp(88px,10vw,128px);line-height:.9;letter-spacing:-.03em}
+.font-note{margin:0;padding:12px 24px;border-top:1px solid var(--ln);font-size:13px;color:var(--mu)}
+.hier{border-top:1px solid var(--ln)}
+.hrow{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;justify-content:space-between;padding-block:22px;border-bottom:1px solid var(--ln)}
+.hrow>:first-child{flex:1 1 480px;margin:0;min-width:0}
+.hrow .lbl{width:200px}
+.cta-pill{display:inline-flex;align-items:center;min-height:52px;padding:0 56px;border-radius:999px;background:var(--brand);color:var(--on-brand);font-size:14px;font-weight:700;letter-spacing:.04em}
+
+/* patterns, apps */
+.pattern img{width:100%;border-radius:14px}
+.app-img{width:100%;border-radius:14px;background:#000000;border:0;padding:0;cursor:zoom-in;display:block;overflow:hidden}
+.app-img img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .4s ease}
+.app-img:hover img{transform:scale(1.025)}
+
+/* downloads */
+.all{border-radius:18px;padding:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;background:var(--brand);color:var(--on-brand)}
+.all p{margin:0}
+.file{display:flex;align-items:center;gap:16px;padding-block:18px;border-bottom:1px solid var(--ln);flex-wrap:wrap}
+.file .ico{width:48px;height:60px;border-radius:6px;background:var(--brand);color:var(--on-brand);display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font:600 10px var(--f-mono)}
+.file .info{flex:1 1 220px;min-width:0}
+.file .info p{margin:0}
+
+.empty-state{padding-block:120px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
+.empty-state p{margin:0}
+footer.foot{border-top:1px solid var(--ln)}
+footer.foot .wrap-in{padding-block:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;font-weight:300;color:var(--mu)}
+footer.foot img{height:26px;width:auto;background:var(--tile);border-radius:4px;padding:3px 6px}
+
+/* overlays */
+.lightbox{position:fixed;inset:0;z-index:20;background:var(--shade);display:flex;align-items:center;justify-content:center;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox figure{margin:0;max-width:1200px;width:100%;display:flex;flex-direction:column;gap:12px}
+.lightbox img{width:100%;max-height:78vh;object-fit:contain;border-radius:12px}
+.lightbox figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#FFFFFF;flex-wrap:wrap}
+.lightbox .close{position:absolute;top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:999px;border:0;background:#FFFFFF;color:#0C0C14;font-size:20px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;z-index:30;background:var(--fg);color:var(--bg);padding:12px 18px;border-radius:12px;font-size:14px;max-width:calc(100vw - 32px);transition:opacity .2s,transform .2s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.mbar{display:none}
+
+@media (max-width: 960px){
+  .app{display:block}
+  .side{position:static;height:auto;overflow:visible;border-right:0;border-bottom:1px solid var(--ln);padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px;gap:16px}
+  .brandmark{flex-direction:row;align-items:center;justify-content:space-between;padding:0}
+  .brandmark img{width:140px;margin-left:0}
+  .nav{flex-direction:row;overflow-x:auto;gap:6px;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{flex:0 0 auto;border:1px solid var(--ln);border-radius:999px;min-height:40px}
+  .nav .c{display:none}
+  .tray,.side-foot{display:none}
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--fg);color:var(--bg);align-items:center;justify-content:space-between;gap:12px;
+    padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .mbar.on{display:flex}
+  .mbar p{margin:0;font-weight:600}
+  .wide{grid-column:auto}
+  .wide .tile{height:240px}
+  .sec{padding-block:64px;scroll-margin-top:150px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+
+<div class="app">
+  <aside class="side" aria-label="Brand navigation">
+    <div class="brandmark">
+      <img src="assets/logo-horizontal.png" alt="SNS Supply Network Solutions">
+      <p class="lbl">Brand identity · V03 · July 2026</p>
+    </div>
+    <nav class="nav" id="nav" aria-label="Sections"></nav>
+    <section class="tray" aria-label="Your selection">
+      <div class="tray-head"><strong>Your selection</strong><span class="count" id="trayCount">0</span></div>
+      <p class="muted" id="trayEmpty" style="margin:0;font-size:13px">Tap “+ Add” on any asset to build your own download.</p>
+      <ul id="trayList"></ul>
+      <button class="btn" id="trayDownload" data-dl="selection">Download selection · ZIP</button>
+      <button class="ghost" id="trayClear" style="align-self:center;border:0">Clear selection</button>
+    </section>
+    <div class="side-foot">
+      <span class="muted">Brand questions: <span class="mono" style="color:var(--fg)">[contact email]</span></span>
+      <span class="lbl">Made with Brand Portal</span>
+    </div>
+  </aside>
+
+  <div style="min-width:0">
+    <header class="top">
+      <div class="wrap"><div class="wrap-in">
+        <div class="searchrow">
+          <div class="search">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+            <label for="q" class="sr">Search assets</label>
+            <input id="q" type="search" placeholder="Search logos, colours, fonts, templates…" autocomplete="off">
+          </div>
+          <button class="btn" data-dl="all">Download all</button>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+      </div></div>
+    </header>
+
+    <section class="hero" id="hero" aria-label="Cover">
+      <div class="wrap"><div class="wrap-in">
+        <div class="hero-top">
+          <h1>Brand<br>Identity</h1>
+          <p class="tag">Supply<br>Chain<br>Re-Imagined</p>
+        </div>
+        <p class="lede">The new identity should convey credibility, global expertise, and premium simplicity, designed to work across every professional touchpoint.</p>
+        <div class="hero-actions">
+          <button class="btn inv" data-dl="all">Download all assets · ZIP</button>
+          <button class="btn line" data-dl="logos">Logo package</button>
+          <span class="ver">July 2026 // Version 03</span>
+        </div>
+        <img class="hero-mark" src="assets/hero-mark.png" alt="" aria-hidden="true">
+      </div></div>
+    </section>
+
+    <div class="wrap"><div class="wrap-in">
+      <div class="results" id="results" hidden>
+        <p id="resultLabel"></p>
+        <button class="ghost" id="clearSearch">Clear search and filters</button>
+      </div>
+
+      <main id="main">
+        <div class="empty-state" id="noResults" hidden>
+          <p style="font-size:24px;font-weight:700">Nothing matches that search</p>
+          <p class="muted">Try another word, or clear the filters.</p>
+        </div>
+
+        <section class="sec" id="logo">
+          <div class="sec-head">
+            <div><p class="sec-num">01</p><h2>Logo</h2></div>
+            <p class="intro">A refined, confident logotype that expresses SNS as one connected, end-to-end global supply chain partner. Simple, timeless, and built to extend across a broader brand system.</p>
+          </div>
+          <div class="grid g-logo" id="logoGrid"></div>
+          <div class="rules" data-rules>
+            <div class="stack">
+              <div class="sub-head"><h3 class="sub">Emblem breakdown</h3><p>The two “S” terminals align with the diagonal of the “N”, so the logotype reads as one connected movement.</p></div>
+              <div class="figure"><img src="assets/emblem.png" alt="SNS emblem with construction lines" style="max-width:760px;margin:0 auto"></div>
+            </div>
+            <div class="stack">
+              <div class="sub-head"><h3 class="sub">Clear space and minimum size</h3><p>Clear space equals twice the gap between the emblem and the logotype. Never reproduce the logo below the minimum sizes.</p></div>
+              <div class="figure"><img src="assets/clearspace.png" alt="SNS logo clear space diagram"></div>
+              <div class="stats">
+                <div class="stat"><p class="lbl">Digital minimum</p><p>100 px</p></div>
+                <div class="stat"><p class="lbl">Print minimum</p><p>25 mm</p></div>
+                <div class="stat"><p class="lbl">Clear space</p><p>2x</p></div>
+              </div>
+            </div>
+            <div class="stack">
+              <div class="sub-head"><h3 class="sub">Tagline flexibility</h3><p>Single line wherever possible. Two lines for narrow vertical layouts, three lines for special applications.</p></div>
+              <div class="figure"><img src="assets/tagline.png" alt="Supply Network Solutions tagline arrangements"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec" id="colour">
+          <div class="sec-head">
+            <div><p class="sec-num">02</p><h2>Colour palette</h2></div>
+            <div class="stack" style="align-items:flex-start">
+              <p class="intro">Bold primary colours with balanced neutral tones. Together they create a clear, consistent system that supports recognition and a confident brand presence.</p>
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="muted" style="font-size:13px">Palette file · ASE, PDF</span><button class="add" data-add="pal" aria-pressed="false">+ Add</button></div>
+            </div>
+          </div>
+          <div class="stack" id="mainWrap"><p class="lbl">Main palette</p><div class="grid g-main" id="mainGrid"></div></div>
+          <div class="stack" id="secWrap" style="margin-top:12px"><p class="lbl">Secondary palette</p><div class="grid g-sec" id="secGrid"></div></div>
+        </section>
+
+        <section class="sec" id="type">
+          <div class="sec-head">
+            <div><p class="sec-num">03</p><h2>Typography</h2></div>
+            <p class="intro">Designed to communicate clarity, confidence and consistency. A versatile range of weights supports strong hierarchy and legibility across all applications.</p>
+          </div>
+          <div class="stack" id="fontList" style="gap:24px"></div>
+          <div class="stack" data-rules style="padding-top:16px">
+            <h3 class="sub">Typography hierarchy</h3>
+            <div class="hier">
+              <div class="hrow"><p style="font-size:clamp(42px,6vw,84px);font-weight:800;line-height:.98;letter-spacing:-.035em;text-wrap:balance">Clarity Through Clean Design</p><p class="lbl">Header 1 · Söhne Fett</p></div>
+              <div class="hrow"><p style="font-size:clamp(26px,3vw,36px);font-weight:700;letter-spacing:-.02em">Sustainable and User-Centric</p><p class="lbl">Header 2 · Söhne Dreiviertelfett</p></div>
+              <div class="hrow"><p style="font-size:clamp(17px,2vw,22px);font-weight:300;letter-spacing:.08em;text-transform:uppercase">Structuring communication with precision</p><p class="lbl">Header 3 · Söhne Leicht</p></div>
+              <div class="hrow"><p style="max-width:52ch;font-size:16px;font-weight:300;line-height:1.6">Body copy guides readers clearly and efficiently, so every message about the modern supply chain is delivered with precision.</p><p class="lbl">Body · Söhne Leicht</p></div>
+              <div class="hrow"><div><span class="cta-pill">CONNECT WITH SNS</span></div><p class="lbl">Call to action · Söhne Dreiviertelfett</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec" id="patterns">
+          <div class="sec-head">
+            <div><p class="sec-num">04</p><h2>Chain patterns</h2></div>
+            <p class="intro">The N repeats into a modular pattern inspired by the rhythm of a chain, turning the logo into a flexible system that expresses movement, connection and continuity.</p>
+          </div>
+          <div class="stack" id="patternList" style="gap:28px"></div>
+        </section>
+
+        <section class="sec" id="applications">
+          <div class="sec-head">
+            <div><p class="sec-num">05</p><h2>Applications</h2></div>
+            <p class="intro">The system across print and digital touchpoints. Open any example to see it larger, or add it to your selection to download the template.</p>
+          </div>
+          <div class="grid g-apps" id="appGrid"></div>
+        </section>
+
+        <section class="sec" id="files">
+          <div class="sec-head"><div><p class="sec-num">06</p><h2>Downloads</h2></div></div>
+          <div class="all">
+            <div><p style="font-size:clamp(24px,3vw,30px);font-weight:300;letter-spacing:-.02em">Everything in one file</p><p style="opacity:.85;font-weight:300">Logos, palette, fonts, patterns and templates</p></div>
+            <button class="btn inv" data-dl="all">Download all · ZIP</button>
+          </div>
+          <div id="docList"></div>
+        </section>
+      </main>
+    </div></div>
+
+    <footer class="foot"><div class="wrap"><div class="wrap-in">
+      <span>SNS // Brand Identity</span>
+      <img src="assets/logo-brandmark.png" alt="SNS">
+    </div></div></footer>
+  </div>
+</div>
+
+<div class="mbar" id="mbar"><p id="mbarText">0 selected</p><button class="btn" data-dl="selection" style="min-height:40px">Download · ZIP</button></div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Preview">
+  <button class="close" id="lbClose" aria-label="Close preview">×</button>
+  <figure><img id="lbImg" alt=""><figcaption><span id="lbCap" style="font-weight:600"></span><span style="display:flex;gap:8px"><button class="add" id="lbAdd" aria-pressed="false" style="background:#FFFFFF;color:#0C0C14;border-color:#FFFFFF">+ Add</button></span></figcaption></figure>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const LOGOS = [
+    { id:'lg-primary', name:'Primary logo', fmts:'SVG · AI · PNG · PDF', src:'assets/logo-primary.png', bg:'#FFFFFF', wide:true, mw:'80%', tags:'main horizontal emblem' },
+    { id:'lg-horizontal', name:'Horizontal', fmts:'SVG · PNG · EPS', src:'assets/logo-horizontal.png', mw:'80%', tags:'tagline' },
+    { id:'lg-vertical', name:'Vertical · left', fmts:'SVG · PNG · EPS', src:'assets/logo-vertical.png', mw:'54%', tags:'stacked' },
+    { id:'lg-vertical-c', name:'Vertical · centred', fmts:'SVG · PNG · EPS', src:'assets/logo-vertical-c.png', mw:'54%', tags:'stacked centered' },
+    { id:'lg-logotype', name:'Logotype', fmts:'SVG · PNG', src:'assets/logo-logotype.png', mw:'46%', tags:'wordmark supply network solutions' },
+    { id:'lg-brandmark', name:'Brandmark', fmts:'SVG · PNG · ICO', src:'assets/logo-brandmark.png', mw:'58%', tags:'emblem icon favicon' },
+    { id:'lg-white', name:'Brandmark · reversed', fmts:'SVG · PNG', src:'assets/logo-white.png', bg:'#383DB2', mw:'72%', tags:'white negative blue' }
+  ];
+  const MAIN = [
+    { name:'Network Blue', hex:'#393EB3', cmyk:'100 95 0 0', pantone:'[Pantone]' },
+    { name:'Express Red', hex:'#FF0000', cmyk:'0 99 97 0', pantone:'[Pantone]' },
+    { name:'Horizon Black', hex:'#000000', cmyk:'[confirm]', pantone:'[Pantone]' }
+  ];
+  const SECONDARY = [
+    { name:'Network Blue · Dark', hex:'#1C2C6A', cmyk:'100 94 29 18' },
+    { name:'Network Blue · Light', hex:'#9C9ED9', cmyk:'39 35 0 0' },
+    { name:'Express Red · Dark', hex:'#AA1111', cmyk:'22 100 100 17' },
+    { name:'Express Red · Light', hex:'#FF938D', cmyk:'0 53 34 0' },
+    { name:'Horizon Grey', hex:'#87878A', cmyk:'[confirm]' }
+  ];
+  const FONTS = [
+    { id:'ft-sohne', name:'Söhne', role:'Main font', source:'Klim Type Foundry · licence required', action:'Get licence', family:"var(--f-sans)", licensed:true, tags:'sohne primary headline',
+      weights:[['Leicht',300,'Aa'],['Kräftig',500,'Bb'],['Dreiviertelfett',700,'Cc']] },
+    { id:'ft-montserrat', name:'Montserrat', role:'Secondary font · digital and editable documents', source:'Google Fonts · free', action:'Download family', family:"var(--f-montserrat)", licensed:false, tags:'google secondary web',
+      weights:[['Light',300,'Aa'],['SemiBold',600,'Bb'],['ExtraBold',800,'Cc']] }
+  ];
+  const PATTERNS = [
+    { id:'gr-red', name:'Chain pattern · Express Red', fmts:'SVG · PNG', src:'assets/pattern-red.jpg', tags:'pattern n red' },
+    { id:'gr-blue', name:'Chain pattern · Network Blue', fmts:'SVG · PNG', src:'assets/pattern-blue.jpg', tags:'pattern n blue' }
+  ];
+  const APPS = [
+    { id:'ap-presentation', name:'Presentation template', group:'Digital · PPTX', src:'assets/app-presentation.jpg', wide:true, tags:'slides deck powerpoint' },
+    { id:'ap-cards', name:'Business cards', group:'Print', src:'assets/app-cards.jpg', tags:'stationery' },
+    { id:'ap-letterhead', name:'Letterhead', group:'Print · A4', src:'assets/app-letterhead.jpg', tags:'stationery' },
+    { id:'ap-env-blue', name:'Envelopes · blue', group:'Print · A4 and 22 × 11 cm', src:'assets/app-envelope-blue.jpg', tags:'folder stationery' },
+    { id:'ap-env-red', name:'Envelopes · red', group:'Print · A4 and 22 × 11 cm', src:'assets/app-envelope-red.jpg', tags:'folder stationery' },
+    { id:'ap-certificate', name:'Participation certificate', group:'Print', src:'assets/app-certificate.jpg', tags:'award' },
+    { id:'ap-signature', name:'Email signature', group:'Digital', src:'assets/app-signature.jpg', tags:'email' },
+    { id:'ap-linkedin', name:'LinkedIn banner', group:'Social', src:'assets/app-linkedin.jpg', wide:true, tags:'social cover' },
+    { id:'ap-social-1', name:'Social post · product', group:'Social', src:'assets/app-social-1.jpg', tags:'instagram wms' },
+    { id:'ap-social-2', name:'Social post · event', group:'Social', src:'assets/app-social-2.jpg', tags:'instagram logimat countdown' },
+    { id:'ap-social-3', name:'Social post · partnership', group:'Social', src:'assets/app-social-3.jpg', tags:'instagram bluerock' }
+  ];
+  const DOCS = [
+    { id:'doc-guidelines', ext:'PDF', name:'SNS Brand Guidelines', meta:'PDF · 32 pages · 23 MB · Version 03', tags:'manual guidelines' }
+  ];
+  const TYPES = [['all','All'],['logo','Logos'],['colour','Colours'],['font','Fonts'],['pattern','Patterns'],['app','Applications'],['doc','Documents']];
+  const SECTIONS = [
+    { id:'logo', num:'01', label:'Logo' },
+    { id:'colour', num:'02', label:'Colour palette' },
+    { id:'type', num:'03', label:'Typography' },
+    { id:'patterns', num:'04', label:'Chain patterns' },
+    { id:'applications', num:'05', label:'Applications' },
+    { id:'files', num:'06', label:'Downloads' }
+  ];
+  const NAMES = { pal:['Colour palette','Colour'] };
+  [[LOGOS,'Logo'],[FONTS,'Typography'],[PATTERNS,'Chain patterns'],[APPS,'Applications'],[DOCS,'Downloads']].forEach(([l,s]) => l.forEach(x => NAMES[x.id] = [x.name, s]));
+
+  const KEY = 'sns-portal-selection';
+  let sel;
+  try { sel = new Set(JSON.parse(localStorage.getItem(KEY) || 'null') || ['lg-primary','ft-sohne','doc-guidelines']); }
+  catch (e) { sel = new Set(['lg-primary','ft-sohne','doc-guidelines']); }
+  const state = { q:'', type:'all', copied:null };
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const rgb = (h) => { const s = h.replace('#',''); return [0,2,4].map(i => parseInt(s.slice(i,i+2),16)); };
+  const lum = (h) => { const c = rgb(h).map(v => { v/=255; return v <= .03928 ? v/12.92 : Math.pow((v+.055)/1.055,2.4); }); return .2126*c[0]+.7152*c[1]+.0722*c[2]; };
+  const ink = (h) => lum(h) > .4 ? '#0C0C14' : '#FFFFFF';
+  const match = (x, t, extra) => (state.type === 'all' || state.type === t) && (!state.q || (x.name + ' ' + (x.tags||'') + ' ' + extra).toLowerCase().includes(state.q));
+  const addBtn = (id) => `<button class="add" data-add="${id}" aria-pressed="${sel.has(id)}">${sel.has(id) ? 'Added' : '+ Add'}</button>`;
+
+  function renderLogos(list){
+    $('logoGrid').innerHTML = list.map(l => `
+      <div class="${l.wide ? 'wide' : ''}">
+        <div class="tile" style="${l.bg ? 'background:'+l.bg : ''}"><img src="${l.src}" alt="${esc(l.name)}" style="max-width:${l.mw}"></div>
+        <div class="meta"><div><p class="name">${esc(l.name)}</p><p class="lbl" style="font-size:10px;margin-top:2px">${l.fmts}</p></div>
+        <div class="acts"><button class="ghost" data-dl="${l.id}">Download</button>${addBtn(l.id)}</div></div>
+      </div>`).join('');
+  }
+  function swatch(c, pantone){
+    const v = rgb(c.hex);
+    const rows = [['HEX',c.hex],['RGB',v.join(' ')],['CMYK',c.cmyk]];
+    if (pantone) rows.push(['Pantone',c.pantone]);
+    return `<div class="sw"><div class="sw-face" style="background:${c.hex};color:${ink(c.hex)}">${esc(c.name)}</div><div class="codes">
+      ${rows.map(([k,val]) => { const key = c.name+'|'+k, pend = val.charAt(0) === '[';
+        return `<div class="code"><span class="lbl k">${k}</span><span class="v${pend ? ' pending' : ''}">${esc(val)}</span>${pend ? '' : `<button class="copy${state.copied === key ? ' done' : ''}" data-copy="${esc(val)}" data-key="${esc(key)}" aria-label="Copy ${esc(c.name)} ${k}">${state.copied === key ? 'Copied' : 'Copy'}</button>`}</div>`; }).join('')}
+    </div></div>`;
+  }
+  function renderFonts(list){
+    $('fontList').innerHTML = list.map(f => `
+      <article class="font">
+        <div class="font-head"><div><p class="lbl">${esc(f.role)}</p><h3>${esc(f.name)}</h3></div>
+          <div class="acts"><span class="muted" style="font-size:13px">${esc(f.source)}</span><button class="ghost" data-dl="${f.id}">${f.action}</button>${addBtn(f.id)}</div></div>
+        <div class="weights">${f.weights.map(([n,w,g]) => `
+          <div class="weight" style="font-family:${f.family}"><p class="lbl">${n}</p>
+          <p class="abc" style="font-weight:${w}">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</p>
+          <p class="glyph" style="font-weight:${w}">${g}</p></div>`).join('')}</div>
+        ${f.licensed ? '<p class="font-note">Shown in a fallback typeface until the licensed Söhne files are uploaded.</p>' : ''}
+      </article>`).join('');
+  }
+  function renderPatterns(list){
+    $('patternList').innerHTML = list.map(p => `
+      <div class="pattern"><img src="${p.src}" alt="${esc(p.name)}">
+        <div class="meta"><div><p class="name">${esc(p.name)}</p><p class="lbl" style="font-size:10px;margin-top:2px">${p.fmts}</p></div>
+        <div class="acts"><button class="ghost" data-dl="${p.id}">Download</button>${addBtn(p.id)}</div></div></div>`).join('');
+  }
+  function renderApps(list){
+    $('appGrid').innerHTML = list.map(a => `
+      <div class="${a.wide ? 'wide' : ''}">
+        <button class="app-img" data-view="${a.id}" aria-label="View ${esc(a.name)} larger"><img src="${a.src}" alt="${esc(a.name)}" loading="lazy"></button>
+        <div class="meta"><div><p class="name">${esc(a.name)}</p><p class="lbl" style="font-size:10px;margin-top:2px">${esc(a.group)}</p></div>
+        <div class="acts"><button class="ghost" data-view="${a.id}">View</button>${addBtn(a.id)}</div></div>
+      </div>`).join('');
+  }
+  function renderDocs(list){
+    $('docList').innerHTML = list.map(d => `
+      <div class="file"><span class="ico">${d.ext}</span><div class="info"><p style="font-weight:600">${esc(d.name)}</p><p class="muted" style="font-size:13px">${esc(d.meta)}</p></div>
+      <button class="ghost" data-dl="${d.id}">Download</button>${addBtn(d.id)}</div>`).join('');
+  }
+  function renderTray(){
+    const items = [...sel].filter(id => NAMES[id]);
+    $('trayCount').textContent = items.length;
+    $('trayEmpty').hidden = items.length > 0;
+    $('trayList').innerHTML = items.map(id => `<li><div><p>${esc(NAMES[id][0])}</p><p class="lbl" style="font-size:10px">${NAMES[id][1]}</p></div><button class="x" data-add="${id}" aria-label="Remove ${esc(NAMES[id][0])}">×</button></li>`).join('');
+    $('trayList').hidden = $('trayDownload').hidden = $('trayClear').hidden = items.length === 0;
+    $('mbarText').textContent = items.length + (items.length === 1 ? ' item selected' : ' items selected');
+    $('mbar').classList.toggle('on', items.length > 0);
+    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
+  }
+
+  function render(){
+    const logos = LOGOS.filter(x => match(x,'logo','logo'));
+    const colourOk = (c) => (state.type === 'all' || state.type === 'colour') && (!state.q || (c.name+' '+c.hex+' colour color palette').toLowerCase().includes(state.q));
+    const main = MAIN.filter(colourOk), sec = SECONDARY.filter(colourOk);
+    const fonts = FONTS.filter(x => match(x,'font','typography font'));
+    const pats = PATTERNS.filter(x => match(x,'pattern','graphic pattern'));
+    const apps = APPS.filter(x => match(x,'app','applications template'));
+    const docs = DOCS.filter(x => match(x,'doc','documents downloads pdf'));
+    renderLogos(logos); renderFonts(fonts); renderPatterns(pats); renderApps(apps); renderDocs(docs);
+    $('mainGrid').innerHTML = main.map(c => swatch(c,true)).join('');
+    $('secGrid').innerHTML = sec.map(c => swatch(c,false)).join('');
+    $('mainWrap').hidden = !main.length; $('secWrap').hidden = !sec.length;
+    const counts = { logo:logos.length, colour:main.length+sec.length, type:fonts.length, patterns:pats.length, applications:apps.length, files:docs.length };
+    SECTIONS.forEach(s => { $(s.id).hidden = counts[s.id] === 0; });
+    const searching = !!state.q || state.type !== 'all';
+    const total = Object.values(counts).reduce((a,b) => a+b, 0);
+    $('hero').hidden = searching;
+    $('results').hidden = !searching;
+    $('noResults').hidden = total > 0;
+    $('resultLabel').textContent = total === 1 ? '1 result' : total + ' results';
+    document.querySelectorAll('[data-rules]').forEach(el => el.hidden = searching);
+    const firstVisible = document.querySelector('.sec:not([hidden])');
+    document.querySelectorAll('.sec').forEach(el => el.style.borderTop = el === firstVisible ? '0' : '');
+    $('nav').innerHTML = SECTIONS.map(s => `<a href="#${s.id}" data-sec="${s.id}" class="${counts[s.id] ? '' : 'empty'}${s.id === activeId ? ' on' : ''}"><span class="n">${s.num}</span><span>${s.label}</span><span class="c">${counts[s.id]}</span></a>`).join('');
+    $('chips').innerHTML = TYPES.map(([k,l]) => `<button class="chip" data-type="${k}" aria-pressed="${state.type === k}">${l}</button>`).join('');
+    document.querySelectorAll('[data-add]').forEach(b => { const on = sel.has(b.dataset.add); b.setAttribute('aria-pressed', on); if (b.classList.contains('add')) b.textContent = on ? 'Added' : '+ Add'; });
+    renderTray();
+  }
+
+  let toastT;
+  function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600); }
+
+  function openLightbox(id){
+    const a = APPS.find(x => x.id === id); if (!a) return;
+    $('lbImg').src = a.src; $('lbImg').alt = a.name; $('lbCap').textContent = a.name + ' · ' + a.group;
+    $('lbAdd').dataset.add = a.id; $('lbAdd').setAttribute('aria-pressed', sel.has(a.id)); $('lbAdd').textContent = sel.has(a.id) ? 'Added' : '+ Add';
+    $('lightbox').hidden = false; $('lbClose').focus();
+  }
+  function closeLightbox(){ $('lightbox').hidden = true; }
+
+  document.addEventListener('click', (e) => {
+    const add = e.target.closest('[data-add]');
+    if (add) { const id = add.dataset.add; sel.has(id) ? sel.delete(id) : sel.add(id); render();
+      if (!$('lightbox').hidden) { $('lbAdd').setAttribute('aria-pressed', sel.has(id)); $('lbAdd').textContent = sel.has(id) ? 'Added' : '+ Add'; }
+      return; }
+    const cp = e.target.closest('[data-copy]');
+    if (cp) { const val = cp.dataset.copy, key = cp.dataset.key;
+      const done = () => { state.copied = key; render(); toast('Copied ' + val); };
+      try { navigator.clipboard.writeText(val).then(done, () => { selectText(cp); }); } catch (err) { selectText(cp); }
+      return; }
+    const ty = e.target.closest('[data-type]');
+    if (ty) { state.type = ty.dataset.type; render(); return; }
+    const dl = e.target.closest('[data-dl]');
+    if (dl) { const n = dl.dataset.dl === 'selection' ? sel.size + ' items' : dl.dataset.dl === 'all' ? 'all assets' : dl.dataset.dl === 'logos' ? 'the logo package' : (NAMES[dl.dataset.dl] || ['this file'])[0];
+      toast('Prototype: the download for ' + n + ' connects in the full site.'); return; }
+    const vw = e.target.closest('[data-view]');
+    if (vw) { openLightbox(vw.dataset.view); return; }
+    if (e.target === $('lightbox') || e.target.closest('#lbClose')) closeLightbox();
+  });
+  function selectText(btn){ const v = btn.parentElement.querySelector('.v'); const r = document.createRange(); r.selectNodeContents(v); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Press Ctrl+C or ⌘C to copy'); }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('lightbox').hidden) closeLightbox(); });
+  $('q').addEventListener('input', (e) => { state.q = e.target.value.trim().toLowerCase(); render(); });
+  $('clearSearch').addEventListener('click', () => { state.q = ''; state.type = 'all'; $('q').value = ''; render(); });
+  $('trayClear').addEventListener('click', () => { sel.clear(); render(); });
+
+  let activeId = 'logo';
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { activeId = en.target.id; document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.sec === activeId)); } });
+  }, { rootMargin: '-35% 0px -55% 0px' });
+  SECTIONS.forEach(s => io.observe($(s.id)));
+
+  render();
+})();
+</script>
+
+</body>
+</html>
